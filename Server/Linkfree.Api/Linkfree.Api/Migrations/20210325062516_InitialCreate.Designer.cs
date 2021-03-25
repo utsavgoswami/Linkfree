@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AspNetIdentityDemo.Api.Migrations
+namespace Linkfree.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210324074920_FixAttempt1Database")]
-    partial class FixAttempt1Database
+    [Migration("20210325062516_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,10 +91,9 @@ namespace AspNetIdentityDemo.Api.Migrations
 
             modelBuilder.Entity("AspNetIdentityDemo.Api.Models.Link", b =>
                 {
-                    b.Property<int>("LinkId")
+                    b.Property<Guid>("LinkId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");

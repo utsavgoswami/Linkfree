@@ -9,7 +9,7 @@ namespace AspNetIdentityDemo.Api.Models
     public class Link
     {
         // Primary key
-        public int LinkId { get; set; }
+        public Guid LinkId { get; set; }
 
         [Required]
         public int Priority { get; set; }
