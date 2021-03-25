@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Linkfree.Api.Services
 {
-    interface ILinkService
+    public interface ILinkService
     {
         List<Link> GetLinks(string applicationUserId);
 
-        Link AddLink(Link link);
+        Link AddLink(Link link, string applicationUserId);
 
         void DeleteLink(Link link);
 
@@ -25,9 +25,13 @@ namespace Linkfree.Api.Services
             _appDbContext = appDbContext;
         }
 
-        public Link AddLink(Link link)
+        public Link AddLink(Link link, string applicationUserId)
         {
-            throw new NotImplementedException();
+            link.LinkId = Guid.NewGuid();
+            _appDbContext.Links.Add(link);
+            _appDbContext.Entry(link).Property("ApplicationUserId").CurrentValue = applicationUserId;
+            _appDbContext.SaveChanges();
+            return link;
         }
 
         public void DeleteLink(Link link)

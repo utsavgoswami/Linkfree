@@ -67,7 +67,10 @@ namespace AspNetIdentityDemo.Api
                 };
             });
 
+
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ILinkService, LinkService>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

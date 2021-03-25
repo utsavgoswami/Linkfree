@@ -36,7 +36,6 @@ namespace AspNetIdentityDemo.Api.Controllers
         {
             // Example of how to find out which user accessed this endpoint
             var userKey = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
             var userDetails = await _userService.GetUser(userKey);
 
             var rng = new Random();
