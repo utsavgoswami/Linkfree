@@ -25,7 +25,7 @@ namespace Linkfree.Api.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("api/v1/links")]
+        [Route("api/v1/Links")]
         public async Task<IActionResult> AddLink(Link link)
         {
             var userKey = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -36,6 +36,55 @@ namespace Linkfree.Api.Controllers
             var pathToLink = HttpContext.Request.Scheme + "://" + HttpContext.Request.Host + HttpContext.Request.Path + "/" + link.LinkId;
 
             return Created(pathToLink, link);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("api/v1/Links")]
+        public async Task<IActionResult> GetUserLinks()
+        {
+            var userKey = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userDetails = await _userService.GetUser(userKey);
+
+            return Ok(_linkService.GetLinks(userDetails.Id));
+        }
+
+        [HttpPatch]
+        [Authorize]
+        [Route("api/v1/Links/{LinkId}")]
+        public async Task<IActionResult> UpdateLink(Guid LinkId, Link link)
+        {
+            var existingLink = _linkService.GetLink(LinkId);
+
+            if (existingLink != null)
+            {
+                var userKey = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var userDetails = await _userService.GetUser(userKey);
+
+                if (_linkService.IsLinkOwner(link, userDetails.Id))
+                {
+                    link.LinkId = existingLink.LinkId;
+                    _linkService.UpdateLink(link);
+                }
+            }
+
+            return Ok(link);
+        }
+
+        [HttpDelete]
+        [Authorize]
+        [Route("api/v1/Links/{LinkId}")]
+        public async Task<IActionResult> DeleteLink(Guid LinkId)
+        {
+            var existingLink = _linkService.GetLink(LinkId);
+
+            if (existingLink != null)
+            { 
+                _linkService.DeleteLink(existingLink);
+                return Ok();
+            }
+
+            return NotFound($"Link with Id: {LinkId} was not found");
         }
     }
 }
