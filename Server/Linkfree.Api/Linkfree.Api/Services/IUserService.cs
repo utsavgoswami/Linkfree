@@ -107,11 +107,28 @@ namespace Linkfree.Api.Services
 
             if (result.Succeeded)
             {
+                // Setting up/generating JWT
+                var claims = new[]
+                {
+                    new Claim(ClaimTypes.NameIdentifier, model.UserName)
+                };
+
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AuthSettings:Key"]));
+
+                var token = new JwtSecurityToken(
+                   claims: claims,
+                   signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
+                );
+
+                string tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
+
                 return new UserManagerResponse
                 {
-                    Message = "User created successfully",
+                    Message = "Successfully registered!",
+                    Token = tokenAsString,
                     IsSuccess = true
                 };
+
             }
 
             return new UserManagerResponse

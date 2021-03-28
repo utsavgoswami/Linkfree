@@ -1,0 +1,43 @@
+<nav class="navbar is-white">
+  <!-- logo / brand -->
+  <div class="navbar-brand">
+    <a href="" class="navbar-item">
+      <img src="assets/images/logo.PNG" alt="site logo" style="max-height: 70px;" class="py-2 px-2">
+    </a>
+    <a href="" class="navbar-burger"
+               [class.is-active]="burgerMenuExpanded"
+               (click)="burgerMenuExpanded = !burgerMenuExpanded">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+
+  <!-- Navbar Links -->
+  <div class="navbar-menu" id="navbar-menu" [class.is-active]="burgerMenuExpanded">
+    <div class="navbar-end">
+      <a href="" class="navbar-item" *ngIf="!isLoggedIn" routerLink="/login">Log in</a>
+      <a href="" class="navbar-item" *ngIf="isLoggedIn">Sign out</a>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a href="" *ngIf="!isLoggedIn" 
+                      style="background-color: rgb(57,224,155);" 
+                      class="button has-text-black is-uppercase is-rounded"
+                      routerLink="/register">
+            <strong>
+              Sign Up Free
+            </strong>
+          </a>
+          <a href="" *ngIf="isLoggedIn" 
+                      style="background-color: rgb(57,224,155);" 
+                      class="button has-text-black is-uppercase is-rounded"
+                      routerLink="/dashboard">
+            <strong>
+              Dashboard
+            </strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
