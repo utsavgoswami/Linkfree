@@ -8,7 +8,7 @@ Linkfree: Full Stack Linktree Clone made using an Angular Frontend and .NET Core
   <li>Angular 11</li>
   <li>Typescript</li>
   <li>Node.js</li>
-  <li>Clarity</li>
+  <li>Bulma</li>
 </ul>
 
 <ul>
