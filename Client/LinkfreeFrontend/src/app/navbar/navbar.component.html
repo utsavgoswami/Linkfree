@@ -4,7 +4,7 @@
     <a href="" class="navbar-item">
       <img src="assets/images/logo.PNG" alt="site logo" style="max-height: 70px;" class="py-2 px-2">
     </a>
-    <a href="" class="navbar-burger"
+    <a href="" *ngIf="showNavbarItems" class="navbar-burger"
                (click)="burgerMenuExpanded = !burgerMenuExpanded">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>

@@ -14,6 +14,9 @@ export class NavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if (!this.showNavbarItems) {
+      this.burgerMenuExpanded = false;
+    }
   }
 
   toggleBurgerMenu() {
