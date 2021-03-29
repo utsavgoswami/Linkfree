@@ -67,7 +67,7 @@ namespace Linkfree.Api.Controllers
                     _linkService.UpdateLink(link);
                 }
             }
-
+           
             return Ok(link);
         }
 
@@ -79,8 +79,14 @@ namespace Linkfree.Api.Controllers
             var existingLink = _linkService.GetLink(LinkId);
 
             if (existingLink != null)
-            { 
-                _linkService.DeleteLink(existingLink);
+            {
+                var userKey = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var userDetails = await _userService.GetUser(userKey);
+
+                if (_linkService.IsLinkOwner(existingLink, userDetails.Id))
+                {
+                    _linkService.DeleteLink(existingLink);
+                }
                 return Ok();
             }
 

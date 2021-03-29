@@ -76,11 +76,21 @@ namespace AspNetIdentityDemo.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Linkfree.Api", Version = "v1" });
             });
+
+            // TODO: Only allow frontend as origin once app gets near-prod ready
+            services.AddCors(o => o.AddPolicy("AllowAll", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("AllowAll");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
