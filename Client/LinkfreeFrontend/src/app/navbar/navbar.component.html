@@ -5,17 +5,16 @@
       <img src="assets/images/logo.PNG" alt="site logo" style="max-height: 70px;" class="py-2 px-2">
     </a>
     <a href="" class="navbar-burger"
-               [class.is-active]="burgerMenuExpanded"
                (click)="burgerMenuExpanded = !burgerMenuExpanded">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
     </a>
   </div>
 
   <!-- Navbar Links -->
   <div class="navbar-menu" id="navbar-menu" [class.is-active]="burgerMenuExpanded">
-    <div class="navbar-end">
+    <div class="navbar-end" *ngIf="showNavbarItems">
       <a href="" class="navbar-item" *ngIf="!isLoggedIn" routerLink="/login">Log in</a>
       <a href="" class="navbar-item" *ngIf="isLoggedIn">Sign out</a>
       <div class="navbar-item">
