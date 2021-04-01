@@ -2,7 +2,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
 </head>
-<div>
+<div *ngIf="userExists; else userDoesNotExist">
   <div class="links-container">
 
     <div class="creator-container">
@@ -13,6 +13,17 @@
     <ng-container *ngFor="let link of this.links">
       <a href={{link.url}} class="linktree-link" target="_blank">{{link.title}}</a>
     </ng-container>
-    
+
   </div>
 </div>
+<ng-template #userDoesNotExist>
+  <div class="section">
+    <div class="container">
+      <img class="logo" src="assets/images/logo.PNG" alt="site logo">
+      <h1 class="no-found-user-message title is-1">The page you're looking for doesn't exist</h1>
+      <a href="" class="title is-4" routerLink="/home">
+        <p class="return-link">Return to the homepage</p>
+      </a>
+    </div>
+  </div>
+</ng-template>

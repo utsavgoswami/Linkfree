@@ -7,6 +7,20 @@
   
 }
 
+.logo {
+  display: block;
+  margin: 0 auto;
+}
+
+.return-link {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.no-found-user-message {
+  text-align: center;
+}
+
 .creator-container {
   display: flex;
   align-items: center;

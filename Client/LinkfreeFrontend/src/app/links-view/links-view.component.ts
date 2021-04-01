@@ -11,20 +11,29 @@ export class LinksViewComponent implements OnInit {
 
   links: any[];
   userName: string;
+  userExists: boolean = true;
 
   constructor(private linkService: LinkService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => this.userName = params['user-name']);
-    this.linkService.getUserLinks(this.userName).subscribe((data: any[]) => {
-      console.log(data);
-      this.links = data;
+    this.linkService.getUserLinks(this.userName)
+        .subscribe(
+          (data: any[]) => {
+            console.log(data);
+            this.links = data;
 
-      for (let link of this.links) {
-        link.owner = this.userName;
-      }
-      console.log(this.links);
-    });
+            for (let link of this.links) {
+              link.owner = this.userName;
+            }
+            console.log(this.links);
+          },
+          err => {
+            this.userExists = false;
+            console.log(err);
+          }
+          
+    );
   }
 
 }
