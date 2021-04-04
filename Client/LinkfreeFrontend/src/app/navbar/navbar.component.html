@@ -4,8 +4,8 @@
     <a href="" class="navbar-item">
       <img src="assets/images/logo.PNG" alt="site logo" style="max-height: 70px;" class="py-2 px-2">
     </a>
-    <a href="" *ngIf="showNavbarItems" class="navbar-burger"
-               (click)="burgerMenuExpanded = !burgerMenuExpanded">
+    <a *ngIf="showNavbarItems" class="navbar-burger"
+               (click)="toggleBurgerMenu()">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -15,11 +15,11 @@
   <!-- Navbar Links -->
   <div class="navbar-menu" id="navbar-menu" [class.is-active]="burgerMenuExpanded">
     <div class="navbar-end" *ngIf="showNavbarItems">
-      <a href="" class="navbar-item" *ngIf="!isLoggedIn" routerLink="/login">Log in</a>
-      <a href="" class="navbar-item" *ngIf="isLoggedIn">Sign out</a>
+      <a class="navbar-item" *ngIf="!isLoggedIn" routerLink="/login">Log in</a>
+      <a class="navbar-item" *ngIf="isLoggedIn">Sign out</a>
       <div class="navbar-item">
         <div class="buttons">
-          <a href="" *ngIf="!isLoggedIn" 
+          <a *ngIf="!isLoggedIn" 
                       style="background-color: rgb(57,224,155);" 
                       class="button has-text-black is-uppercase is-rounded"
                       routerLink="/register">
@@ -27,7 +27,7 @@
               Sign Up Free
             </strong>
           </a>
-          <a href="" *ngIf="isLoggedIn" 
+          <a *ngIf="isLoggedIn" 
                       style="background-color: rgb(57,224,155);" 
                       class="button has-text-black is-uppercase is-rounded"
                       routerLink="/dashboard">

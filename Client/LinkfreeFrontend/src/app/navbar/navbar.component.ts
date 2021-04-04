@@ -9,7 +9,7 @@ export class NavbarComponent implements OnInit {
 
   @Input() showNavbarItems: boolean = true;
   isLoggedIn: boolean;
-  burgerMenuExpanded: boolean = true;
+  burgerMenuExpanded: boolean = false;
 
   constructor() { }
 

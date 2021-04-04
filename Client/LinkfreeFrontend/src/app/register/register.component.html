@@ -1,2 +1,35 @@
 <app-navbar [showNavbarItems]="false"></app-navbar>
-<p>register works!</p>
+
+<div class="section">
+  <div class="container is-max-desktop">
+    <form class="box">
+      <h1 class="is-size-3">Create an account for free</h1>
+      <h5 class="is-size-6">Free forever. No payment needed.</h5>
+
+      <div class="field mt-6">
+        <label class="label">Email</label>
+        <div class="control">
+          <input [(ngModel)]="registerUserData.email" (ngModelChange)="modelChange($event, 'email')" name="email" class="input" type="email" placeholder="e.g. yogi@gmail.com">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control">
+          <input [(ngModel)]="registerUserData.username" (ngModelChange)="modelChange($event, 'username')" name="username" class="input" placeholder="e.g. yogithepug">
+        </div>
+      </div>
+    
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+          <input [(ngModel)]="registerUserData.password" (ngModelChange)="modelChange($event, 'password')" name="password" class="input" type="password" placeholder="********">
+        </div>
+      </div>
+    
+      <button *ngIf="buttonIsEnabled" class="button submit-btn is-primary is-medium is-fullwidth"><strong>Sign up with email</strong></button>
+      <button *ngIf="!buttonIsEnabled" class="button disabled-btn is-medium is-fullwidth" disabled><strong>Sign up with email</strong></button>
+    </form>
+  </div>
+</div>
+
