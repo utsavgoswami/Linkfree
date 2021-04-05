@@ -11,6 +11,7 @@ export class LinksViewComponent implements OnInit {
 
   links: any[];
   userName: string;
+  serverResponded: boolean = false;
   userExists: boolean = true;
 
   constructor(private linkService: LinkService, private route: ActivatedRoute) { }
@@ -20,6 +21,7 @@ export class LinksViewComponent implements OnInit {
     this.linkService.getUserLinks(this.userName)
         .subscribe(
           (data: any[]) => {
+            this.serverResponded = true;
             console.log(data);
             this.links = data;
 
@@ -29,6 +31,7 @@ export class LinksViewComponent implements OnInit {
             console.log(this.links);
           },
           err => {
+            this.serverResponded = true;
             this.userExists = false;
             console.log(err);
           }

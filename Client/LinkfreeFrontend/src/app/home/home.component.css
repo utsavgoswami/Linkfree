@@ -1,0 +1,13 @@
+.get-started-btn {
+  margin: 0 auto;
+  margin-top: 4rem;
+  display: block;
+  background-color: #7551e9;
+  border-radius: 1rem;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+}
+
+.get-started-btn:hover {
+  background-color: #6042c4;
+}
