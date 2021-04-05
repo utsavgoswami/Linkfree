@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+interface RegisterState {
+  "email": string;
+  "username": string;
+  "password": string;
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -7,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  registerUserData = {
+  registerUserData: RegisterState = {
     "email": "",
     "username": "",
     "password": ""
@@ -28,11 +34,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  modelChange(modifiedValue, name: string) {
+  modelChange(modifiedValue: string, name: string): void {
     this.registerUserData[name] = modifiedValue;
-
-    // console.log("Value of " + name + " = " + this.registerUserData[name]);
-
     this.shouldButtonBeEnabled();
   }
 
