@@ -6,10 +6,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private REGISTRATION_ENDPOINT: string = 'https://localhost:44344/api/v1/Auth/Register';
+  private AUTH_URL = 'https://localhost:44344/api/v1/Auth/'
   constructor(private http: HttpClient) { }
 
   registerUser(user) {
-    return this.http.post<any>(this.REGISTRATION_ENDPOINT, user);
+    return this.http.post<any>(this.AUTH_URL + "Register", user);
+  }
+
+  loginUser(user) {
+    return this.http.post<any>(this.AUTH_URL + "Login", user);
   }
 }

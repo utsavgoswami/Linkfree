@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 interface LoginState {
-  "username": string;
-  "password": string;
+  "UserName": string;
+  "Password": string;
 }
 
 @Component({
@@ -12,19 +13,19 @@ interface LoginState {
 })
 export class LoginComponent implements OnInit {
   loginUserData: LoginState = {
-    "username": "",
-    "password": ""
+    "UserName": "",
+    "Password": ""
   }
 
   buttonIsEnabled: boolean = false;
 
-  constructor() { }
+  constructor(private _auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
   shouldButtonBeEnabled(): void {
-    if (this.loginUserData.username != "" && this.loginUserData.password != "") {
+    if (this.loginUserData.UserName != "" && this.loginUserData.Password != "") {
       this.buttonIsEnabled = true;
     } else {
       this.buttonIsEnabled = false;
@@ -34,6 +35,14 @@ export class LoginComponent implements OnInit {
   modelChange(modifiedValue: string, name: string): void {
     this.loginUserData[name] = modifiedValue;
     this.shouldButtonBeEnabled();
+  }
+
+  loginUser() {
+    this._auth.loginUser(this.loginUserData)
+        .subscribe(
+          res => console.log(res),
+          err => console.log(err)
+        );
   }
 
 }

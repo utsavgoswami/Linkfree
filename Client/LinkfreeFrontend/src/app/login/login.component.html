@@ -8,18 +8,18 @@
       <div class="field text-section">
         <label class="label input-description">Username</label>
         <div class="control">
-          <input [(ngModel)]="loginUserData.username" (ngModelChange)="modelChange($event, 'username')" name="username" class="input" placeholder="e.g. yogithepug">
+          <input [(ngModel)]="loginUserData.UserName" (ngModelChange)="modelChange($event, 'UserName')" name="username" class="input" placeholder="e.g. yogithepug">
         </div>
       </div>
     
       <div class="field">
         <label class="label input-description">Password</label>
         <div class="control">
-          <input [(ngModel)]="loginUserData.password" (ngModelChange)="modelChange($event, 'password')" name="password" class="input" type="password" placeholder="********">
+          <input [(ngModel)]="loginUserData.Password" (ngModelChange)="modelChange($event, 'Password')" name="password" class="input" type="password" placeholder="********">
         </div>
       </div>
     
-      <button *ngIf="buttonIsEnabled" class="button submit-btn is-primary is-medium is-fullwidth"><strong>Sign in</strong></button>
+      <button *ngIf="buttonIsEnabled" (click)="loginUser()" class="button submit-btn is-primary is-medium is-fullwidth"><strong>Sign in</strong></button>
       <button *ngIf="!buttonIsEnabled" class="button disabled-btn is-medium is-fullwidth" disabled><strong>Sign in</strong></button>
     </form>
   </div>
