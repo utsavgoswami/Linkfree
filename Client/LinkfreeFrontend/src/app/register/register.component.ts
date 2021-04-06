@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+
 
 interface RegisterState {
-  "email": string;
-  "username": string;
-  "password": string;
+  "Email": string;
+  "UserName": string;
+  "Password": string;
+  "ConfirmPassword": string;
 }
 
 @Component({
@@ -14,20 +17,21 @@ interface RegisterState {
 export class RegisterComponent implements OnInit {
 
   registerUserData: RegisterState = {
-    "email": "",
-    "username": "",
-    "password": ""
+    "Email": "",
+    "UserName": "",
+    "Password": "",
+    "ConfirmPassword": ""
   }
 
   buttonIsEnabled: boolean = false;
 
-  constructor() { }
+  constructor(private _auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
   shouldButtonBeEnabled(): void {
-    if (this.registerUserData.email != "" && this.registerUserData.username != "" && this.registerUserData.password != "") {
+    if (this.registerUserData.Email != "" && this.registerUserData.UserName != "" && this.registerUserData.Password != "") {
       this.buttonIsEnabled = true;
     } else {
       this.buttonIsEnabled = false;
@@ -37,6 +41,14 @@ export class RegisterComponent implements OnInit {
   modelChange(modifiedValue: string, name: string): void {
     this.registerUserData[name] = modifiedValue;
     this.shouldButtonBeEnabled();
+  }
+
+  registerUser(): void {
+    this._auth.registerUser(this.registerUserData)
+        .subscribe(
+          res => console.log(res),
+          err => console.log(err)
+        );
   }
 
 }
