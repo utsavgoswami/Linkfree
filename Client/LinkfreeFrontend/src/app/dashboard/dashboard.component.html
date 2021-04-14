@@ -1,2 +1,43 @@
 <app-navbar></app-navbar>
-<p>dashboard works!</p>
+
+<div class="section">
+  <div class="container is-max-desktop">
+
+    <p class="is-size-1 has-text-centered">Your Links</p>
+
+    <ng-container *ngFor="let link of userLinks">
+      <div class="card link-editor">
+        <header class="card-header">
+          <p class="card-header-title">
+            {{link.title}}
+          </p>
+          <button (click)="toggleExpand(link.priority)" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <fa-icon [icon]="faAngleDown"></fa-icon>
+            </span>
+          </button>
+        </header>
+        <div *ngIf="link.isExpanded" class="card-content">
+          <div class="field">
+            <label class="label">Priority</label>
+            <div class="control">
+              <div class="select">
+                <select (change)="changeSelectedPriority(link.priority, $event.target.value)">
+                  <ng-container *ngFor="let aLink of userLinks">
+                    <ng-container *ngIf="aLink.priority === link.selectedPriority; else notSelected">
+                      <option selected="selected">{{aLink.priority}}</option>
+                    </ng-container>
+                    <ng-template #notSelected>
+                      <option>{{aLink.priority}}</option>
+                    </ng-template>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    
+  </div>
+</div>

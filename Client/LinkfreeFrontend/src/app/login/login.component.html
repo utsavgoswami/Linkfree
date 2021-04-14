@@ -8,14 +8,14 @@
       <div class="field text-section">
         <label class="label input-description">Username</label>
         <div class="control">
-          <input [(ngModel)]="loginUserData.UserName" (ngModelChange)="modelChange($event, 'UserName')" name="username" class="input" placeholder="e.g. yogithepug">
+          <input [(ngModel)]="loginUserData.UserName" (ngModelChange)="modelChange()" name="username" class="input" placeholder="e.g. yogithepug">
         </div>
       </div>
     
       <div class="field">
         <label class="label input-description">Password</label>
         <div class="control">
-          <input [(ngModel)]="loginUserData.Password" (ngModelChange)="modelChange($event, 'Password')" name="password" class="input" type="password" placeholder="********">
+          <input [(ngModel)]="loginUserData.Password" (ngModelChange)="modelChange()" name="password" class="input" type="password" placeholder="********">
         </div>
       </div>
     

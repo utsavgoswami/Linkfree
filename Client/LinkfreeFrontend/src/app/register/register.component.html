@@ -9,28 +9,28 @@
       <div class="field mt-6">
         <label class="label">Email</label>
         <div class="control">
-          <input [(ngModel)]="registerUserData.Email" (ngModelChange)="modelChange($event, 'Email')" name="email" class="input" type="email" placeholder="e.g. yogi@gmail.com">
+          <input [(ngModel)]="registerUserData.Email" (ngModelChange)="modelChange()" name="email" class="input" type="email" placeholder="e.g. yogi@gmail.com">
         </div>
       </div>
 
       <div class="field">
         <label class="label">Username</label>
         <div class="control">
-          <input [(ngModel)]="registerUserData.UserName" (ngModelChange)="modelChange($event, 'UserName')" name="username" class="input" placeholder="e.g. yogithepug">
+          <input [(ngModel)]="registerUserData.UserName" (ngModelChange)="modelChange()" name="username" class="input" placeholder="e.g. yogithepug">
         </div>
       </div>
     
       <div class="field">
         <label class="label">Password</label>
         <div class="control">
-          <input [(ngModel)]="registerUserData.Password" (ngModelChange)="modelChange($event, 'Password')" name="password" class="input" type="password" placeholder="********">
+          <input [(ngModel)]="registerUserData.Password" (ngModelChange)="modelChange()" name="password" class="input" type="password" placeholder="********">
         </div>
       </div>
 
       <div class="field">
         <label class="label">Confirm Password</label>
         <div class="control">
-          <input [(ngModel)]="registerUserData.ConfirmPassword" (ngModelChange)="modelChange($event, 'ConfirmPassword')" name="password" class="input" type="password" placeholder="********">
+          <input [(ngModel)]="registerUserData.ConfirmPassword" (ngModelChange)="modelChange()" name="password" class="input" type="password" placeholder="********">
         </div>
       </div>
     

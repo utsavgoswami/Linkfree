@@ -35,7 +35,6 @@ export class LinksViewComponent implements OnInit {
             this.userExists = false;
             console.log(err);
           }
-          
     );
   }
 

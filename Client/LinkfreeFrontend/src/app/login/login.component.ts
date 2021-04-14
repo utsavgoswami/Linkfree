@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 interface LoginState {
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   buttonIsEnabled: boolean = false;
 
-  constructor(private _auth: AuthService) { }
+  constructor(private _auth: AuthService,
+              private _router: Router) { }
 
   ngOnInit(): void {
   }
@@ -32,8 +34,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  modelChange(modifiedValue: string, name: string): void {
-    this.loginUserData[name] = modifiedValue;
+  modelChange(): void {
     this.shouldButtonBeEnabled();
   }
 
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
           res => {
             localStorage.setItem('token', res.token);
+            this._router.navigate(['/dashboard']);
           },
           err => console.log(err)
         );
