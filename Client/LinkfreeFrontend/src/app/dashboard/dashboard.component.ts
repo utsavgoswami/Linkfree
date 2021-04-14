@@ -9,10 +9,13 @@ interface Card {
   priority: number,
   selectedPriority: number,
   title: string,
+  originalTitle: string,
   url: string,
+  originalUrl: string,
   isExpanded: boolean,
   dropdownIsActive: boolean,
-  saveButtonIsActive: boolean
+  saveButtonIsActive: boolean,
+  deleteModalIsActive: boolean
 }
 
 @Component({
@@ -37,6 +40,9 @@ export class DashboardComponent implements OnInit {
                            link.selectedPriority = link.priority;
                            link.dropdownIsActive = false;
                            link.saveButtonIsActive = false;
+                           link.deleteModalIsActive = false;
+                           link.originalTitle = link.title;
+                           link.originalUrl = link.url;
                          });
                          console.log(this.userLinks);
                        },
@@ -66,6 +72,23 @@ export class DashboardComponent implements OnInit {
       }
       return link;
     })
+  }
+
+  toggleModal(index: number): void {
+    this.userLinks[index].deleteModalIsActive = !this.userLinks[index].deleteModalIsActive;
+  }
+
+  modelChange(index: number): void {
+    const selectedCard: Card = this.userLinks[index];
+
+    const fieldsAreNotEmpty: boolean = selectedCard.title != "" && selectedCard.url != "";
+    const atLeastOneFieldChanged: boolean = selectedCard.title != selectedCard.originalTitle || selectedCard.url != selectedCard.originalUrl;
+
+    if (fieldsAreNotEmpty && atLeastOneFieldChanged) {
+      this.userLinks[index].saveButtonIsActive = true;
+    } else {
+      this.userLinks[index].saveButtonIsActive = false;
+    }
   }
 
 }
