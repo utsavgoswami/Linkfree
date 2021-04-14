@@ -35,6 +35,32 @@
               </div>
             </div>
           </div>
+
+          <div class="field link-attribute">
+            <label class="label">Title</label>
+            <div class="control">
+              <input [(ngModel)]="link.title" (ngModelChange)="modelChange()" value="link.title" class="input" placeholder="e.g. Buy my Jewelery!">
+            </div>
+          </div>
+
+          <div class="field link-attribute">
+            <label class="label">URL</label>
+            <div class="control">
+              <input [(ngModel)]="link.url" (ngModelChange)="modelChange()" value="link.url" class="input" placeholder="e.g. www.tomsjewelery.com">
+            </div>
+          </div>
+
+          <div class="control">
+            <div class="buttons">
+              <ng-container *ngIf="link.saveButtonIsActive; else disabledSave">
+                <button class="button is-info">Save</button>
+              </ng-container>
+              <ng-template #disabledSave>
+                <button class="Disabled button is-info" disabled>Save</button>
+              </ng-template>
+              <button class="button is-danger">Delete</button>
+            </div>
+          </div>
         </div>
       </div>
     </ng-container>

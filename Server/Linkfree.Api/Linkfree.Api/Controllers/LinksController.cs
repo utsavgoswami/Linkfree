@@ -39,6 +39,17 @@ namespace Linkfree.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [Route("api/v1/Links")]
+        public async Task<IActionResult> GetLinks()
+        {
+            var userKey = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userDetails = await _userService.GetUser(userKey);
+
+            return Ok(_linkService.GetLinks(userDetails.Id));
+        }
+
+        [HttpGet]
         [Route("api/v1/Users/{userName}/Links")]
         public async Task<IActionResult> GetUserLinks(string userName)
         {

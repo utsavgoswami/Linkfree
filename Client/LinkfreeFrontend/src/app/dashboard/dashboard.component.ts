@@ -11,7 +11,8 @@ interface Card {
   title: string,
   url: string,
   isExpanded: boolean,
-  dropdownIsActive: boolean
+  dropdownIsActive: boolean,
+  saveButtonIsActive: boolean
 }
 
 @Component({
@@ -35,6 +36,7 @@ export class DashboardComponent implements OnInit {
                            link.isExpanded = false;
                            link.selectedPriority = link.priority;
                            link.dropdownIsActive = false;
+                           link.saveButtonIsActive = false;
                          });
                          console.log(this.userLinks);
                        },
@@ -55,15 +57,6 @@ export class DashboardComponent implements OnInit {
       }
       return link;
     });
-  }
-
-  toggleDropdown(index: number): void {
-    this.userLinks = this.userLinks.map(link => {
-      if (link.priority === index) {
-        link.dropdownIsActive = !link.dropdownIsActive;
-      }
-      return link;
-    })
   }
 
   changeSelectedPriority(index: number, modifiedSelectedPriority: number): void {
