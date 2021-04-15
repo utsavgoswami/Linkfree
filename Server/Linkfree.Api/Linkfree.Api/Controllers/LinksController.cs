@@ -63,7 +63,7 @@ namespace Linkfree.Api.Controllers
             return NotFound($"User with userName: {userName} was not found");
         }
 
-        [HttpPatch]
+        [HttpPut]
         [Authorize]
         [Route("api/v1/Links/{LinkId}")]
         public async Task<IActionResult> UpdateLink(Guid LinkId, Link link)

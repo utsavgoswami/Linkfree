@@ -19,7 +19,7 @@
             <p class="is-size-4">{{link.url}}</p>
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-danger">Delete (This is irreversible!)</button>
+            <button class="button is-danger" (click)="deleteLink(link.linkId)">Delete (This is irreversible!)</button>
             <button class="button" (click)="toggleModal(link.priority)">Cancel</button>
           </footer>
         </div>
@@ -73,7 +73,7 @@
           <div class="control">
             <div class="buttons">
               <ng-container *ngIf="link.saveButtonIsActive; else disabledSave">
-                <button class="button is-info">Save</button>
+                <button (click)="updateLink(link.priority)" class="button is-info">Save</button>
               </ng-container>
               <ng-template #disabledSave>
                 <button class="Disabled button is-info" disabled>Save</button>
@@ -82,6 +82,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </ng-container>
     
