@@ -3,8 +3,29 @@
 <div class="section">
   <div class="container is-max-desktop">
 
-    <p class="is-size-1 has-text-centered">Your Links</p>
-
+    <div class="link-creator">
+      <p class="create-link-title">Create a New Link</p>
+      <div class="box">
+        
+        <div class="field">
+          <label class="label">Title</label>
+          <div class="control">
+            <input [(ngModel)]="createLinkContent.title" (ngModelChange)="shouldCreateButtonBeEnabled()" class="input" placeholder="e.g. Follow me on Instagram!">
+          </div>
+        </div>
+      
+        <div class="field">
+          <label class="label">URL</label>
+          <div class="control">
+            <input [(ngModel)]="createLinkContent.url" (ngModelChange)="shouldCreateButtonBeEnabled()" class="input" placeholder="www.instagram.com/jakethedog">
+          </div>
+        </div>
+      
+        <button (click)="createLink()" *ngIf="this.createLinkContent.buttonIsActive" class="button is-primary create-link-btn">Create</button>
+        <button *ngIf="!this.createLinkContent.buttonIsActive" class="button is-primary create-link-btn" disabled>Create</button>
+      </div>
+    </div>
+    <p class="links-section-title">Your Links</p>
     <ng-container *ngFor="let link of userLinks">
       <div class="modal" [ngClass]="{ 'is-active': link.deleteModalIsActive}">
         <div class="modal-background" (click)="toggleModal(link.priority)"></div>
@@ -59,14 +80,14 @@
           <div class="field link-attribute">
             <label class="label">Title</label>
             <div class="control">
-              <input [(ngModel)]="link.title" (ngModelChange)="modelChange(link.priority)" value="link.title" class="input" placeholder="e.g. Buy my Jewelery!">
+              <input [(ngModel)]="link.title" (ngModelChange)="shouldSaveButtonBeEnabled(link.priority)" value="link.title" class="input" placeholder="e.g. Buy my Jewelery!">
             </div>
           </div>
 
           <div class="field link-attribute">
             <label class="label">URL</label>
             <div class="control">
-              <input [(ngModel)]="link.url" (ngModelChange)="modelChange(link.priority)" value="link.url" class="input" placeholder="e.g. www.tomsjewelery.com">
+              <input [(ngModel)]="link.url" (ngModelChange)="shouldSaveButtonBeEnabled(link.priority)" value="link.url" class="input" placeholder="e.g. www.tomsjewelery.com">
             </div>
           </div>
 

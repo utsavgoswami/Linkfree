@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LinkService, Link } from '../link.service';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import * as _ from 'lodash';
 
 interface Card {
@@ -19,6 +19,11 @@ interface Card {
   deleteModalIsActive: boolean
 }
 
+interface CreateLinkState {
+  title: string,
+  url: string,
+  buttonIsActive: boolean
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -28,7 +33,13 @@ interface Card {
 export class DashboardComponent implements OnInit {
 
   userLinks: Card[] = [];
-  faAngleDown = faAngleDown;
+  faAngleDown: IconDefinition = faAngleDown;
+  createLinkContent: CreateLinkState = {
+    title: "",
+    url: "",
+    buttonIsActive: false
+  }
+
   constructor(private _linkService: LinkService,
               private _router: Router) { }
 
@@ -75,14 +86,14 @@ export class DashboardComponent implements OnInit {
       }
       return link;
     })
-    this.modelChange(index);
+    this.shouldSaveButtonBeEnabled(index);
   }
 
   toggleModal(index: number): void {
     this.userLinks[index].deleteModalIsActive = !this.userLinks[index].deleteModalIsActive;
   }
 
-  modelChange(index: number): void {
+  shouldSaveButtonBeEnabled(index: number): void {
     const selectedCard: Card = this.userLinks[index];
 
     const fieldsAreNotEmpty: boolean = selectedCard.title !== "" && selectedCard.url !== "";
@@ -94,7 +105,14 @@ export class DashboardComponent implements OnInit {
       this.userLinks[index].saveButtonIsActive = false;
     }
 
-    console.log(this.userLinks);
+  }
+
+  shouldCreateButtonBeEnabled(): void {
+    if (this.createLinkContent.url != "" && this.createLinkContent.title != "") {
+      this.createLinkContent.buttonIsActive = true;
+    } else {
+      this.createLinkContent.buttonIsActive = false;
+    }
   }
 
   deleteLink(linkId: string): void {
@@ -151,13 +169,45 @@ export class DashboardComponent implements OnInit {
                          updatedCards[updatedPosition].originalUrl = updatedLink.URL;
 
                          this.userLinks = updatedCards;
-                         this.modelChange(originalPosition);
-                         this.modelChange(updatedPosition);
+                         this.shouldSaveButtonBeEnabled(originalPosition);
+                         this.shouldSaveButtonBeEnabled(updatedPosition);
                        },
                        err => {
                          console.log(err);
                        }
                      )
+  }
+
+  createLink() {
+    const linkToCreate: Link = {
+      Priority: this.userLinks.length,
+      Title: this.createLinkContent.title,
+      URL: this.createLinkContent.url
+    }
+
+    this._linkService.createLink(linkToCreate)
+                     .subscribe(
+                       res => {
+                         const CardToAdd: Card = {
+                          linkId: res.linkId,
+                          priority: res.priority,
+                          selectedPriority: res.priority,
+                          title: res.title,
+                          originalTitle: res.title,
+                          url: res.url,
+                          originalUrl: res.url,
+                          isExpanded: false,
+                          dropdownIsActive: false,
+                          saveButtonIsActive: false,
+                          deleteModalIsActive: false,
+                         }
+
+                         this.userLinks = this.userLinks.concat(CardToAdd);
+                       },
+                       err => {
+                         console.log(err);
+                       }
+                     );
   }
 
 }
