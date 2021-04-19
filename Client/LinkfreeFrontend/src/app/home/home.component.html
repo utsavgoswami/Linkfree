@@ -1,5 +1,11 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="isLoggedIn()"
+            [isLoggedIn]=true
+            internalRouteButtonText="Dashboard"
+            internalRoute="dashboard"></app-navbar>
 
+<app-navbar *ngIf="!isLoggedIn()"
+            [isLoggedIn]=false></app-navbar>
+                        
 <div class="section">
   <div class="container">
     <h1 class="is-size-1 has-text-centered has-text-weight-medium">The Only Link You'll Ever Need</h1>

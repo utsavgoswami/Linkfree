@@ -16,24 +16,13 @@
   <div class="navbar-menu" id="navbar-menu" [class.is-active]="burgerMenuExpanded">
     <div class="navbar-end" *ngIf="showNavbarItems">
       <a class="navbar-item" *ngIf="!isLoggedIn" routerLink="/login">Log in</a>
-      <a class="navbar-item" *ngIf="isLoggedIn">Sign out</a>
+      <a class="navbar-item" (click)="logout()" *ngIf="isLoggedIn">Log out</a>
       <div class="navbar-item">
         <div class="buttons">
-          <a *ngIf="!isLoggedIn" 
-                      style="background-color: rgb(57,224,155);" 
-                      class="button has-text-black is-uppercase is-rounded"
-                      routerLink="/register">
-            <strong>
-              Sign Up Free
-            </strong>
-          </a>
-          <a *ngIf="isLoggedIn" 
-                      style="background-color: rgb(57,224,155);" 
-                      class="button has-text-black is-uppercase is-rounded"
-                      routerLink="/dashboard">
-            <strong>
-              Dashboard
-            </strong>
+          <a style="background-color: rgb(57,224,155);" 
+             class="button internal-route-btn is-rounded"
+             [routerLink]="['/' + internalRoute]">
+             {{internalRouteButtonText}}
           </a>
         </div>
       </div>

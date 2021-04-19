@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +9,19 @@ import { Component, OnInit, Input } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   @Input() showNavbarItems: boolean = true;
+
+  @Input()
   isLoggedIn: boolean;
+  
   burgerMenuExpanded: boolean = false;
 
-  constructor() { }
+  @Input()
+  internalRouteButtonText: string = "sign up free";
+
+  @Input()
+  internalRoute: string = "register";
+
+  constructor(private _authService: AuthService) { }
 
   ngOnInit(): void {
     if (!this.showNavbarItems) {
@@ -21,5 +31,9 @@ export class NavbarComponent implements OnInit {
 
   toggleBurgerMenu() {
     this.burgerMenuExpanded = !this.burgerMenuExpanded;
+  }
+
+  logout() {
+    this._authService.logoutUser();
   }
 }

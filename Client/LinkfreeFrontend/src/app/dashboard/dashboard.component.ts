@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LinkService, Link } from '../link.service';
 import { faAngleDown, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import * as _ from 'lodash';
+import { AuthService } from '../auth.service';
 
 interface Card {
   linkId: string,
@@ -40,8 +41,11 @@ export class DashboardComponent implements OnInit {
     buttonIsActive: false
   }
 
+  userName: string = "login"; 
+
   constructor(private _linkService: LinkService,
-              private _router: Router) { }
+              private _router: Router,
+              private _authService: AuthService) { }
 
   ngOnInit(): void {
     this._linkService.getUserLinksWithValidityCheck()
@@ -57,6 +61,7 @@ export class DashboardComponent implements OnInit {
                            link.originalTitle = link.title;
                            link.originalUrl = link.url;
                          });
+                         this.userName = this._authService.getUserName();
                          console.log(this.userLinks);
                        },
                        err => {
