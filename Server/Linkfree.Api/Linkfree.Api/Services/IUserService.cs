@@ -20,17 +20,23 @@ namespace Linkfree.Api.Services
         Task<UserManagerResponse> LoginUserAsync(LoginViewModel model);
 
         Task<ApplicationUser> GetUser(string userName);
+
+        Task<string> UpdateProfilePicture(string userName, string newPictureURL);
+
+        Task<string> GetProfilePicture(string userName);
     }
 
     public class UserService : IUserService
     {
         private UserManager<ApplicationUser> _userManager;
         private IConfiguration _configuration;
+        private ApplicationDbContext _appDbContext;
 
-        public UserService(UserManager<ApplicationUser> userManager, IConfiguration configuration)
+        public UserService(UserManager<ApplicationUser> userManager, IConfiguration configuration, ApplicationDbContext applicationDbContext)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _appDbContext = applicationDbContext;
         }
 
         public async Task<UserManagerResponse> LoginUserAsync(LoginViewModel model)
@@ -145,6 +151,28 @@ namespace Linkfree.Api.Services
             var user = await _userManager.FindByNameAsync(userName);
 
             return user;
+        }
+
+        public async Task<string> UpdateProfilePicture(string userName, string newPictureURL)
+        {
+            ApplicationUser user = await GetUser(userName);
+            if (user != null)
+            {
+                user.ProfilePictureURL = newPictureURL;
+                _appDbContext.Users.Update(user);
+                _appDbContext.SaveChanges();
+            }
+
+            user = await GetUser(userName);
+
+            return user.ProfilePictureURL;
+        }
+
+        public async Task<string> GetProfilePicture(string userName)
+        {
+            ApplicationUser user = await GetUser(userName);
+
+            return user.ProfilePictureURL;
         }
     }
 }

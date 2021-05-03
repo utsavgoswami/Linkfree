@@ -23,13 +23,27 @@ namespace Linkfree.Api.Controllers
         [HttpPut]
         [Authorize]
         [Route("v1/Users/ProfilePicture")]
-        public async Task<IActionResult> UpdateLink(Picture profilePicture)
+        public async Task<IActionResult> UpdateProfilePicture(Picture profilePicture)
         {
             var userKey = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             string updatedURL = await _userService.UpdateProfilePicture(userKey, profilePicture.URL);
 
             return Ok(updatedURL);
+        }
+
+        [HttpGet]
+        [Route("v1/Users/{userName}/ProfilePicture")]
+        public async Task<IActionResult> GetProfilePicture(string userName)
+        {
+            var userDetails = await _userService.GetUser(userName);
+
+            if (userDetails != null)
+            {
+                return Ok(userDetails.ProfilePictureURL);
+            }
+
+            return NotFound($"User with userName: {userName} was not found");
         }
     }
 }
