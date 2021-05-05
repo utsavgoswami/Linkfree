@@ -25,7 +25,7 @@ namespace Linkfree.Api.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("api/v1/Links")]
+        [Route("v1/Links")]
         public async Task<IActionResult> AddLink(Link link)
         {
             var userKey = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -40,7 +40,7 @@ namespace Linkfree.Api.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("api/v1/Links")]
+        [Route("v1/Links")]
         public async Task<IActionResult> GetLinks()
         {
             var userKey = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -50,7 +50,7 @@ namespace Linkfree.Api.Controllers
         }
 
         [HttpGet]
-        [Route("api/v1/Users/{userName}/Links")]
+        [Route("v1/Users/{userName}/Links")]
         public async Task<IActionResult> GetUserLinks(string userName)
         {
             var userDetails = await _userService.GetUser(userName);
@@ -65,7 +65,7 @@ namespace Linkfree.Api.Controllers
 
         [HttpPut]
         [Authorize]
-        [Route("api/v1/Links/{LinkId}")]
+        [Route("v1/Links/{LinkId}")]
         public async Task<IActionResult> UpdateLink(Guid LinkId, Link link)
         {
             var existingLink = _linkService.GetLink(LinkId);
@@ -87,7 +87,7 @@ namespace Linkfree.Api.Controllers
 
         [HttpDelete]
         [Authorize]
-        [Route("api/v1/Links/{LinkId}")]
+        [Route("v1/Links/{LinkId}")]
         public async Task<IActionResult> DeleteLink(Guid LinkId)
         {
             var existingLink = _linkService.GetLink(LinkId);
