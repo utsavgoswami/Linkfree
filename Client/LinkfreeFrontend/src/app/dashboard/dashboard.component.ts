@@ -213,6 +213,10 @@ export class DashboardComponent implements OnInit {
                          console.log(err);
                        }
                      );
+    
+    this.createLinkContent.title = "";
+    this.createLinkContent.url = "";
+    this.createLinkContent.buttonIsActive = false;
   }
 
 }

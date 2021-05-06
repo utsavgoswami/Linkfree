@@ -17,9 +17,10 @@ export interface Link {
 export class LinkService {
   constructor(private httpClient: HttpClient) { }
   
-  private GET_ENDPOINT: string = 'https://localhost:44344/api/v1/Users/';
-  private GET_VERIFY_TOKEN_VALIDITY_ENDPOINT: string = 'https://localhost:44344/api/v1/Links'; 
-  private POST_PATCH_DELETE_ENDPOINT: string = 'https://localhost:44344/api/v1/Links/';
+  private BASE: string = 'http://13.92.37.176' 
+  private GET_ENDPOINT: string = this.BASE + '/api/v1/Users/';
+  private GET_VERIFY_TOKEN_VALIDITY_ENDPOINT: string = this.BASE + '/api/v1/Links'; 
+  private POST_PATCH_DELETE_ENDPOINT: string = this.BASE + '/api/v1/Links/';
 
   public getUserLinksWithValidityCheck(): Observable<any> {
     return this.httpClient.get<any>(this.GET_VERIFY_TOKEN_VALIDITY_ENDPOINT);

@@ -16,6 +16,8 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { LinkService } from './link.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { DesktopContainerComponent } from './desktop-container/desktop-container.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DashboardComponent,
     LinksViewComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ImageUploadComponent,
+    DesktopContainerComponent
   ],
   imports: [
     BrowserModule,

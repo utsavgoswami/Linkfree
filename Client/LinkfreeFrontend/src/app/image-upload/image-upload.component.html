@@ -1,0 +1,13 @@
+<div class="file is-primary">
+  <label class="file-label">
+    <input class="file-input" type="file" name="resume" (change)="changeProfilePicture($event.target.files[0])">
+    <span class="file-cta">
+      <span class="file-icon">
+        <fa-icon [icon]="faUpload"></fa-icon>
+      </span>
+      <span class="file-label">
+        Change Profile Picture…
+      </span>
+    </span>
+  </label>
+</div>
