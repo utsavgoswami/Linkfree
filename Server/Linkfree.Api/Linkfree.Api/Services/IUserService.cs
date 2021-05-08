@@ -106,7 +106,8 @@ namespace Linkfree.Api.Services
             var ApplicationUser = new ApplicationUser
             {
                 Email = model.Email,
-                UserName = model.UserName
+                UserName = model.UserName,
+                ProfilePictureURL = "https://i.imgur.com/IFvzNHp.png"
             };
 
             var result = await _userManager.CreateAsync(ApplicationUser, model.Password);

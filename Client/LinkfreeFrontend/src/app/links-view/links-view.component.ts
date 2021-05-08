@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LinkService } from '../link.service';
 import { ActivatedRoute } from '@angular/router';
+import { PictureService } from '../picture.service';
 
 @Component({
   selector: 'app-links-view',
@@ -13,12 +14,19 @@ export class LinksViewComponent implements OnInit {
   userName: string;
   serverResponded: boolean = false;
   userExists: boolean = true;
+  profilePicture: string = "https://i.imgur.com/IFvzNHp.png";
 
-  constructor(private linkService: LinkService, private route: ActivatedRoute) { }
+  constructor(private _linkService: LinkService, private route: ActivatedRoute, 
+              private _pictureService: PictureService) { }
 
   ngOnInit(): void {
+    this._pictureService.getProfilePicture()
+                        .subscribe(res => {
+                          this.profilePicture = res;
+                        });
+
     this.route.params.subscribe(params => this.userName = params['user-name']);
-    this.linkService.getUserLinks(this.userName)
+    this._linkService.getUserLinks(this.userName)
         .subscribe(
           (data: any[]) => {
             this.serverResponded = true;
