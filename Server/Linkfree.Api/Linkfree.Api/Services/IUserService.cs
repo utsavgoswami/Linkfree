@@ -21,9 +21,9 @@ namespace Linkfree.Api.Services
 
         Task<ApplicationUser> GetUser(string userName);
 
-        Task<string> UpdateProfilePicture(string userName, string newPictureURL);
+        Task<Picture> UpdateProfilePicture(string userName, string newPictureURL);
 
-        Task<string> GetProfilePicture(string userName);
+        Task<Picture> GetProfilePicture(string userName);
     }
 
     public class UserService : IUserService
@@ -154,7 +154,7 @@ namespace Linkfree.Api.Services
             return user;
         }
 
-        public async Task<string> UpdateProfilePicture(string userName, string newPictureURL)
+        public async Task<Picture> UpdateProfilePicture(string userName, string newPictureURL)
         {
             ApplicationUser user = await GetUser(userName);
             if (user != null)
@@ -166,14 +166,20 @@ namespace Linkfree.Api.Services
 
             user = await GetUser(userName);
 
-            return user.ProfilePictureURL;
+            return new Picture
+            {
+                URL = user.ProfilePictureURL
+            };
         }
 
-        public async Task<string> GetProfilePicture(string userName)
+        public async Task<Picture> GetProfilePicture(string userName)
         {
             ApplicationUser user = await GetUser(userName);
 
-            return user.ProfilePictureURL;
+            return new Picture
+            {
+                URL = user.ProfilePictureURL
+            };
         }
     }
 }

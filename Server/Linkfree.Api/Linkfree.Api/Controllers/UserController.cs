@@ -27,9 +27,9 @@ namespace Linkfree.Api.Controllers
         {
             var userKey = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            string updatedURL = await _userService.UpdateProfilePicture(userKey, profilePicture.URL);
+            Picture updatedPicture = await _userService.UpdateProfilePicture(userKey, profilePicture.URL);
 
-            return Ok(updatedURL);
+            return Ok(updatedPicture);
         }
 
         [HttpGet]
@@ -40,10 +40,15 @@ namespace Linkfree.Api.Controllers
 
             if (userDetails != null)
             {
-                return Ok(userDetails.ProfilePictureURL);
+                Picture response = new()
+                {
+                    URL = userDetails.ProfilePictureURL
+                };
+
+                return Ok(response);
             }
 
-            return NotFound($"User with userName: {userName} was not found");
+            return NotFound($"User with Username: {userName} was not found");
         }
     }
 }
