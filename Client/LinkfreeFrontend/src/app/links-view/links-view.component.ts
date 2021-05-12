@@ -20,12 +20,13 @@ export class LinksViewComponent implements OnInit {
               private _pictureService: PictureService) { }
 
   ngOnInit(): void {
-    this._pictureService.getProfilePicture()
+    this.route.params.subscribe(params => this.userName = params['user-name']);
+
+    this._pictureService.getProfilePicture(this.userName)
                         .subscribe(res => {
-                          this.profilePicture = res;
+                          this.profilePicture = res.url;
                         });
 
-    this.route.params.subscribe(params => this.userName = params['user-name']);
     this._linkService.getUserLinks(this.userName)
         .subscribe(
           (data: any[]) => {

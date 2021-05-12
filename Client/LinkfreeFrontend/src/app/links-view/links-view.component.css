@@ -6,6 +6,24 @@
   margin-top: 2rem;
 }
 
+.portrait-container {
+  width: 96px;
+  height: 96px;
+  background-size: cover;
+  display: block;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  margin: 0 auto;
+}
+
+/* .portrait-container img {
+  width: auto;
+  height: 100%;
+  margin-left: -50px;
+} */
+
+
 .logo {
   display: block;
   margin: 0 auto;
@@ -38,7 +56,7 @@
 }
 
 .content-creator {
-  margin-top: 1.5rem;
+  margin-top: 0.85rem;
   margin-bottom: 1.5rem;
   text-align: center;
   font-family: 'Noto Sans', sans-serif;

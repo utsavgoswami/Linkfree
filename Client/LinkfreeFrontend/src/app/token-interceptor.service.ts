@@ -10,12 +10,18 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(private injector: Injector) { }
 
   intercept(req, next) {
-    const authService = this.injector.get(AuthService);
-    const tokenizedReq = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${authService.getToken()}`
-      }
-    })
-    return next.handle(tokenizedReq);
+    console.log(req);
+
+    if (req.url.includes("imgur")) {
+      return next.handle(req);
+    } else {
+      const authService = this.injector.get(AuthService);
+      const tokenizedReq = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${authService.getToken()}`
+        }
+      })
+      return next.handle(tokenizedReq);
+    }
   }
 }
