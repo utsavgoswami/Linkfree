@@ -4,7 +4,7 @@ Linkfree: Full Stack Linktree Clone made using an Angular Frontend and .NET Core
 <h3>Technologies Used</h3>
 
 <ul>
-  <strong>Frontend (In Progress)</strong>
+  <strong>Frontend</strong>
   <li>Angular 11</li>
   <li>Typescript</li>
   <li>Node.js</li>
