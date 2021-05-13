@@ -1,13 +1,64 @@
+.introduction {
+  text-align: center;
+}
+
 .get-started-btn {
   margin: 0 auto;
   margin-top: 4rem;
   display: block;
   background-color: #7551e9;
   border-radius: 1rem;
+  color: white;
+  font-weight: 475;
   padding-left: 1.75rem;
   padding-right: 1.75rem;
+  font-size: 1.5rem;
 }
 
 .get-started-btn:hover {
   background-color: #6042c4;
+}
+
+.motto {
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+
+.description {
+  font-size: 1.52rem;
+}
+
+@media only screen and (max-width: 706px) {
+  .motto {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1.25rem;
+  }
+
+  .get-started-btn {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 582px) {
+  .motto {
+    font-size: 2.0rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .motto {
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-size: .9rem;
+  }
 }
