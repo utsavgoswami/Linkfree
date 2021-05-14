@@ -13,3 +13,11 @@
 .submit-btn:hover {
   background-color: #6042c4;
 }
+
+.pricing {
+  font-size: 1rem;
+}
+
+.registration-description {
+  margin-bottom: 2.5rem;
+}

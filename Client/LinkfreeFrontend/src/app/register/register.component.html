@@ -1,6 +1,35 @@
 <app-navbar [showNavbarItems]="false"></app-navbar>
 
-<div class="section">
+<app-desktop-container>
+  <form class="box">
+
+    <div class="registration-description">
+      <h1 class="is-size-3">Create an account for free</h1>
+      <h5 class="pricing">Free forever. No payment needed.</h5>
+    </div>
+
+    <app-form-field name="Email">
+        <input [(ngModel)]="registerUserData.Email" (ngModelChange)="modelChange()" name="email" class="input" type="email" placeholder="e.g. yogi@gmail.com">
+    </app-form-field>
+
+    <app-form-field name="Username">
+      <input [(ngModel)]="registerUserData.UserName" (ngModelChange)="modelChange()" name="username" class="input" placeholder="e.g. yogithepug">
+    </app-form-field>
+
+    <app-form-field name="Password">
+      <input [(ngModel)]="registerUserData.Password" (ngModelChange)="modelChange()" name="password" class="input" type="password" placeholder="********">
+    </app-form-field>
+
+    <app-form-field name="Confirm Password">
+      <input [(ngModel)]="registerUserData.ConfirmPassword" (ngModelChange)="modelChange()" name="password" class="input" type="password" placeholder="********">
+    </app-form-field>
+  
+    <button *ngIf="buttonIsEnabled" (click)="registerUser()" class="button submit-btn is-primary is-medium is-fullwidth"><strong>Sign up with email</strong></button>
+    <button *ngIf="!buttonIsEnabled" class="button disabled-btn is-medium is-fullwidth" disabled><strong>Sign up with email</strong></button>
+  </form>
+</app-desktop-container>
+
+<!-- <div class="section">
   <div class="container is-max-desktop">
     <form class="box">
       <h1 class="is-size-3">Create an account for free</h1>
@@ -38,5 +67,5 @@
       <button *ngIf="!buttonIsEnabled" class="button disabled-btn is-medium is-fullwidth" disabled><strong>Sign up with email</strong></button>
     </form>
   </div>
-</div>
+</div> -->
 
