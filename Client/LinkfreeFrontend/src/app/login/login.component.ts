@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   buttonIsEnabled: boolean = false;
+  authenticationInProgress: boolean = false;
 
   constructor(private _auth: AuthService,
               private _router: Router) { }
@@ -39,13 +40,18 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
+    this.authenticationInProgress = true;
     this._auth.loginUser(this.loginUserData)
         .subscribe(
           res => {
+            this.authenticationInProgress = false;
             localStorage.setItem('token', res.token);
             this._router.navigate(['/dashboard']);
           },
-          err => console.log(err)
+          err => {
+            this.authenticationInProgress = false;
+            console.log(err);
+          } 
         );
   }
 

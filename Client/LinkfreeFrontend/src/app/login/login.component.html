@@ -1,26 +1,26 @@
 <app-navbar [showNavbarItems]="false"></app-navbar>
 
-<div class="section">
-  <div class="container is-max-desktop">
-    <form class="box login-container">
-      <h1 class="is-size-3 description">Sign in to your Linkfree account</h1>
+<app-desktop-container>
+  <form class="box login-container">
+    <h1 class="description">Sign in to your Linkfree account</h1>
+    
+    <app-form-field name="Username">
+      <input [(ngModel)]="loginUserData.UserName" (ngModelChange)="modelChange()" name="username" class="input" placeholder="e.g. yogithepug">
+    </app-form-field>
 
-      <div class="field text-section">
-        <label class="label input-description">Username</label>
-        <div class="control">
-          <input [(ngModel)]="loginUserData.UserName" (ngModelChange)="modelChange()" name="username" class="input" placeholder="e.g. yogithepug">
-        </div>
-      </div>
+    <app-form-field name="Password">
+      <input [(ngModel)]="loginUserData.Password" (ngModelChange)="modelChange()" name="password" class="input" type="password" placeholder="********">
+    </app-form-field>
     
-      <div class="field">
-        <label class="label input-description">Password</label>
-        <div class="control">
-          <input [(ngModel)]="loginUserData.Password" (ngModelChange)="modelChange()" name="password" class="input" type="password" placeholder="********">
-        </div>
-      </div>
-    
+    <ng-template [ngIf]="authenticationInProgress" [ngIfElse]="notInProgress">
+      <button class="button submit-btn is-primary is-medium is-fullwidth is-loading">Sign in</button>
+    </ng-template>
+
+    <ng-template #notInProgress>
       <button *ngIf="buttonIsEnabled" (click)="loginUser()" class="button submit-btn is-primary is-medium is-fullwidth"><strong>Sign in</strong></button>
       <button *ngIf="!buttonIsEnabled" class="button disabled-btn is-medium is-fullwidth" disabled><strong>Sign in</strong></button>
-    </form>
-  </div>
-</div>
+    </ng-template>
+
+    
+  </form>
+</app-desktop-container>
