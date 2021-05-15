@@ -1,7 +1,11 @@
 # Linkfree
-Linkfree: Full Stack Linktree Clone made using an Angular Frontend and .NET Core (C#) Backend with SQL Server Database
+
+<h1>Access Live Webapp Here: www.linkfree.ga<h1>
+
+Linkfree: Full Stack Linktree Clone made using an Angular Frontend and .NET Core (C#) Backend with SQL Server Database, deployed on Azure
 
 <h3>Technologies Used</h3>
+
 
 <ul>
   <strong>Frontend</strong>
@@ -17,4 +21,11 @@ Linkfree: Full Stack Linktree Clone made using an Angular Frontend and .NET Core
   <li>SQL Server</li>
   <li>ASP.NET Core Identity</li>
   <li>Entity Framework Core</li>
+</ul>
+
+<ul>
+  <strong>Cloud Services/Deployment</strong>
+  <li>Azure VM</li>
+  <li>Azure SQL</li>
+  <li>Azure DNS</li>
 </ul>
