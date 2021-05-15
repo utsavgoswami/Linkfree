@@ -101,7 +101,7 @@ namespace Linkfree.Api.Controllers
                 {
                     _linkService.DeleteLink(existingLink);
                 }
-                return Ok($"Link with Id: {LinkId} was successfully deleted!");
+                return Ok(existingLink);
             }
 
             return NotFound($"Link with Id: {LinkId} was not found");

@@ -183,40 +183,23 @@ export class DashboardComponent implements OnInit {
                      )
   }
 
-  createLink() {
-    const linkToCreate: Link = {
-      Priority: this.userLinks.length,
-      Title: this.createLinkContent.title,
-      URL: this.createLinkContent.url
+  createLink(newLink: Link) {
+    const CardToAdd: Card = {
+      linkId: newLink.LinkId,
+      priority: newLink.Priority,
+      selectedPriority: newLink.Priority,
+      title: newLink.Title,
+      originalTitle: newLink.Title,
+      url: newLink.URL,
+      originalUrl: newLink.URL,
+      isExpanded: false,
+      dropdownIsActive: false,
+      saveButtonIsActive: false,
+      deleteModalIsActive: false,
     }
 
-    this._linkService.createLink(linkToCreate)
-                     .subscribe(
-                       res => {
-                         const CardToAdd: Card = {
-                          linkId: res.linkId,
-                          priority: res.priority,
-                          selectedPriority: res.priority,
-                          title: res.title,
-                          originalTitle: res.title,
-                          url: res.url,
-                          originalUrl: res.url,
-                          isExpanded: false,
-                          dropdownIsActive: false,
-                          saveButtonIsActive: false,
-                          deleteModalIsActive: false,
-                         }
-
-                         this.userLinks = this.userLinks.concat(CardToAdd);
-                       },
-                       err => {
-                         console.log(err);
-                       }
-                     );
+    this.userLinks = this.userLinks.concat(CardToAdd);
     
-    this.createLinkContent.title = "";
-    this.createLinkContent.url = "";
-    this.createLinkContent.buttonIsActive = false;
   }
 
 }

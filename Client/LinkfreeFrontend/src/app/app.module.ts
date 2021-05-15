@@ -19,6 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { DesktopContainerComponent } from './desktop-container/desktop-container.component';
 import { FormFieldComponent } from './form-field/form-field.component';
+import { CreateLinkComponent } from './create-link/create-link.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FormFieldComponent } from './form-field/form-field.component';
     LoginComponent,
     ImageUploadComponent,
     DesktopContainerComponent,
-    FormFieldComponent
+    FormFieldComponent,
+    CreateLinkComponent
   ],
   imports: [
     BrowserModule,

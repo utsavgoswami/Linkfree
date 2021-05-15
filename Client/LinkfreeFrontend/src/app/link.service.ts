@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 // Field names capitalized to comply with server-side model
 export interface Link {
   LinkId?: string,
-  Priority: number,
+  Priority?: number,
   Title: string,
   URL: string
 }

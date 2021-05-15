@@ -1,0 +1,15 @@
+<div class="link-creator">
+  <p class="create-link-title">Create a New Link</p>
+  <div class="box">
+    
+    <app-form-field name="Title">
+      <input [(ngModel)]="createLinkContent.title" (ngModelChange)="shouldCreateButtonBeEnabled()" class="input" placeholder="e.g. Follow me on Instagram!">
+    </app-form-field>
+    <app-form-field name="URL">
+      <input [(ngModel)]="createLinkContent.url" (ngModelChange)="shouldCreateButtonBeEnabled()" class="input" placeholder="www.instagram.com/jakethedog">
+    </app-form-field>
+
+    <button (click)="createLink()" *ngIf="this.createLinkContent.buttonIsActive" class="button is-primary create-link-btn">Create</button>
+    <button *ngIf="!this.createLinkContent.buttonIsActive" class="button is-primary create-link-btn" disabled>Create</button>
+  </div>
+</div>
