@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
   }
 
   buttonIsEnabled: boolean = false;
+  registrationInProgress: boolean = false;
 
   constructor(private _auth: AuthService,
               private _router: Router) { }
@@ -45,13 +46,18 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(): void {
+    this.registrationInProgress = true;
     this._auth.registerUser(this.registerUserData)
         .subscribe(
           res => {
+            this.registrationInProgress = false;
             localStorage.setItem('token', res.token);
             this._router.navigate(['/dashboard']);
           },
-          err => console.log(err)
+          err => {
+            this.registrationInProgress = false;
+            console.log(err);
+          }
         );
   }
 

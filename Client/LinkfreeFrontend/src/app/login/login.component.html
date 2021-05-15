@@ -13,14 +13,13 @@
     </app-form-field>
     
     <ng-template [ngIf]="authenticationInProgress" [ngIfElse]="notInProgress">
-      <button class="button submit-btn is-primary is-medium is-fullwidth is-loading">Sign in</button>
+      <button class="button submit-btn is-medium is-fullwidth is-loading">Sign in</button>
     </ng-template>
 
     <ng-template #notInProgress>
-      <button *ngIf="buttonIsEnabled" (click)="loginUser()" class="button submit-btn is-primary is-medium is-fullwidth"><strong>Sign in</strong></button>
+      <button *ngIf="buttonIsEnabled" (click)="loginUser()" class="button submit-btn is-medium is-fullwidth"><strong>Sign in</strong></button>
       <button *ngIf="!buttonIsEnabled" class="button disabled-btn is-medium is-fullwidth" disabled><strong>Sign in</strong></button>
     </ng-template>
-
     
   </form>
 </app-desktop-container>

@@ -23,8 +23,15 @@
     <app-form-field name="Confirm Password">
       <input [(ngModel)]="registerUserData.ConfirmPassword" (ngModelChange)="modelChange()" name="password" class="input" type="password" placeholder="********">
     </app-form-field>
+
+    <ng-template [ngIf]="registrationInProgress" [ngIfElse]="notInProgress">
+      <button class="button submit-btn is-medium is-fullwidth is-loading">Sign up with email</button>
+    </ng-template>
+
+    <ng-template #notInProgress>
+      <button *ngIf="buttonIsEnabled" (click)="registerUser()" class="button submit-btn is-medium is-fullwidth"><strong>Sign up with email</strong></button>
+      <button *ngIf="!buttonIsEnabled" class="button disabled-btn is-medium is-fullwidth" disabled><strong>Sign up with email</strong></button>
+    </ng-template>
   
-    <button *ngIf="buttonIsEnabled" (click)="registerUser()" class="button submit-btn is-primary is-medium is-fullwidth"><strong>Sign up with email</strong></button>
-    <button *ngIf="!buttonIsEnabled" class="button disabled-btn is-medium is-fullwidth" disabled><strong>Sign up with email</strong></button>
   </form>
 </app-desktop-container>
