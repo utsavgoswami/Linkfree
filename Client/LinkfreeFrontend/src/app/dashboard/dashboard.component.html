@@ -9,28 +9,6 @@
     <app-create-link priorityToAssign="{{this.userLinks.length}}"
                      (handleAddLink)="createLink($event)">
     </app-create-link>
-    <!-- <div class="link-creator">
-      <p class="create-link-title">Create a New Link</p>
-      <div class="box">
-        
-        <div class="field">
-          <label class="label">Title</label>
-          <div class="control">
-            <input [(ngModel)]="createLinkContent.title" (ngModelChange)="shouldCreateButtonBeEnabled()" class="input" placeholder="e.g. Follow me on Instagram!">
-          </div>
-        </div>
-      
-        <div class="field">
-          <label class="label">URL</label>
-          <div class="control">
-            <input [(ngModel)]="createLinkContent.url" (ngModelChange)="shouldCreateButtonBeEnabled()" class="input" placeholder="www.instagram.com/jakethedog">
-          </div>
-        </div>
-      
-        <button (click)="createLink()" *ngIf="this.createLinkContent.buttonIsActive" class="button is-primary create-link-btn">Create</button>
-        <button *ngIf="!this.createLinkContent.buttonIsActive" class="button is-primary create-link-btn" disabled>Create</button>
-      </div>
-    </div> -->
     <p class="links-section-title">Your Links</p>
     <ng-container *ngFor="let link of userLinks">
       <div class="modal" [ngClass]="{ 'is-active': link.deleteModalIsActive}">

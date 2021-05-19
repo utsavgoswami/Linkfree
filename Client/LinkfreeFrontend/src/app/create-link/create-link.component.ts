@@ -44,11 +44,16 @@ export class CreateLinkComponent implements OnInit {
     this._linkService.createLink(linkToCreate)
                      .subscribe(
                        res => {
+
                          linkToCreate.LinkId = res.linkId;
-                         this.handleAddLink.emit(linkToCreate);
+                         
+                         // Clear slate for new links to be made 
                          this.createLinkContent.title = "";
                          this.createLinkContent.url = "";
                          this.createLinkContent.buttonIsActive = false;
+
+                         this.handleAddLink.emit(linkToCreate);
+                         
                        },
                        err => {
                          console.log(err);

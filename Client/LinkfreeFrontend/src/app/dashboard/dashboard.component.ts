@@ -35,11 +35,6 @@ export class DashboardComponent implements OnInit {
 
   userLinks: Card[] = [];
   faAngleDown: IconDefinition = faAngleDown;
-  createLinkContent: CreateLinkState = {
-    title: "",
-    url: "",
-    buttonIsActive: false
-  }
 
   userName: string = "login"; 
 
@@ -61,7 +56,7 @@ export class DashboardComponent implements OnInit {
                            link.originalTitle = link.title;
                            link.originalUrl = link.url;
                          });
-                         this.userName = this._authService.getUserName();
+                         this.userName = this._authService.getUserName(); 
                          console.log(this.userLinks);
                        },
                        err => {
@@ -111,15 +106,6 @@ export class DashboardComponent implements OnInit {
     }
 
   }
-
-  shouldCreateButtonBeEnabled(): void {
-    if (this.createLinkContent.url != "" && this.createLinkContent.title != "") {
-      this.createLinkContent.buttonIsActive = true;
-    } else {
-      this.createLinkContent.buttonIsActive = false;
-    }
-  }
-
   deleteLink(linkId: string): void {
     this._linkService.deleteLink(linkId)
                      .subscribe(
@@ -199,7 +185,6 @@ export class DashboardComponent implements OnInit {
     }
 
     this.userLinks = this.userLinks.concat(CardToAdd);
-    
   }
 
 }

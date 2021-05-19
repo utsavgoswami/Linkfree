@@ -20,6 +20,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { DesktopContainerComponent } from './desktop-container/desktop-container.component';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { CreateLinkComponent } from './create-link/create-link.component';
+import { EditLinkComponent } from './edit-link/edit-link.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CreateLinkComponent } from './create-link/create-link.component';
     ImageUploadComponent,
     DesktopContainerComponent,
     FormFieldComponent,
-    CreateLinkComponent
+    CreateLinkComponent,
+    EditLinkComponent
   ],
   imports: [
     BrowserModule,
