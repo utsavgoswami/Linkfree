@@ -1,6 +1,6 @@
 # Linkfree
 
-Linkfree: Full Stack Linktree Clone made using an Angular Frontend and .NET Core (C#) Backend with SQL Server Database, deployed on Azure
+Linkfree: Full Stack Linktree Clone made using an Angular Frontend and .NET Core (C#) Backend with SQL Server Database, ready for deployment on Azure (assuming the funds are available)
 
 <h3>Technologies Used</h3>
 
@@ -21,7 +21,7 @@ Linkfree: Full Stack Linktree Clone made using an Angular Frontend and .NET Core
 </ul>
 
 <ul>
-  <strong>Cloud Services/Deployment</strong>
+  <strong>Cloud Services this Application can be deployed on</strong>
   <li>Azure VM</li>
   <li>Azure SQL</li>
   <li>Azure DNS</li>
